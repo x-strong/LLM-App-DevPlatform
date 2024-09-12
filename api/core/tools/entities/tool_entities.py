@@ -149,10 +149,10 @@ class ToolParameter(BaseModel):
         SYSTEM_FILES = "systme-files"
 
         def as_normal_type(self):
-            if self in (
+            if self in {
                 ToolParameter.ToolParameterType.SECRET_INPUT,
                 ToolParameter.ToolParameterType.SELECT,
-            ):
+            }:
                 return "string"
             return self.value
 

@@ -242,11 +242,11 @@ class ToolManager:
         parameters = tool_entity.get_all_runtime_parameters()
         for parameter in parameters:
             # check file types
-            if parameter.type in (
+            if parameter.type in {
                 ToolParameter.ToolParameterType.SYSTEM_FILES,
                 ToolParameter.ToolParameterType.FILE,
                 ToolParameter.ToolParameterType.FILES,
-            ):
+            }:
                 raise ValueError(f"file type parameter {parameter.name} not supported in agent")
 
             if parameter.form == ToolParameter.ToolParameterForm.FORM:

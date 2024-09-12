@@ -3,7 +3,7 @@ from os import path
 from typing import Any, cast
 
 from core.callback_handler.workflow_tool_callback_handler import DifyWorkflowCallbackHandler
-from core.file.file_obj import File, FileTransferMethod, FileType
+from core.file.models import File, FileTransferMethod, FileType
 from core.tools.entities.tool_entities import ToolInvokeMessage, ToolParameter
 from core.tools.tool_engine import ToolEngine
 from core.tools.tool_manager import ToolManager
@@ -136,7 +136,7 @@ class ToolNode(BaseNode):
                 if variable is None:
                     raise ValueError(f"variable {tool_input.value} not exists")
                 parameter_value = variable.value
-            elif tool_input.type in ("mixed", "constant"):
+            elif tool_input.type in {"mixed", "constant"}:
                 segment_group = variable_pool.convert_template(str(tool_input.value))
                 parameter_value = segment_group.log if for_log else segment_group.text
             else:
